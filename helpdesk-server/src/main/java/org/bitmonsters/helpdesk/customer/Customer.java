@@ -3,7 +3,7 @@ package org.bitmonsters.helpdesk.customer;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-//import org.bitmonsters.helpdesk.ticket.Ticket;
+import org.bitmonsters.helpdesk.ticket.Ticket;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -18,8 +18,11 @@ public class Customer {
     @Id
     @GeneratedValue
     private Long id;
+    @Column(nullable = false , length = 50)
     private String FirstName;
+    @Column(nullable = false , length = 50)
     private String LastName;
+
     private String Email;
     private String Password;
 
@@ -28,8 +31,8 @@ public class Customer {
     @LastModifiedDate
     private Date ModifiedAt;
 
-//    @OneToMany
-//    @JoinColumn(name = "id")
-//    private List<Ticket> tickets;
+    @OneToMany
+    @JoinColumn(name = "id")
+    private List<Ticket> tickets;
 
 }
