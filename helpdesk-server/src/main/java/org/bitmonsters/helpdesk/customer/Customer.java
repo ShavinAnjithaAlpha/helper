@@ -31,8 +31,4 @@ public class Customer {
     @LastModifiedDate
     private Date ModifiedAt;
 
-    @OneToMany
-    @JoinColumn(name = "id")
-    private List<Ticket> tickets;
-
 }
