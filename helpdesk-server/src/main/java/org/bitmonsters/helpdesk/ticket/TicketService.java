@@ -50,7 +50,6 @@ public class TicketService {
     public Note updateNote(Long ticketId, Long noteId, NoteRequest noteRequest) {
         Ticket ticket = getTicket(ticketId);
         if (ticket == null) {
-
             throw new TicketNotFoundException("Ticket not found");
         }
         Note note = noteRepository.findById(noteId).orElse(null);
