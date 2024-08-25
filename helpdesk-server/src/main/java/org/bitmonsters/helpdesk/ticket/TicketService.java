@@ -3,6 +3,7 @@ package org.bitmonsters.helpdesk.ticket;
 import lombok.RequiredArgsConstructor;
 import org.bitmonsters.helpdesk.Exceptions.NoteNotFoundException;
 import org.bitmonsters.helpdesk.Exceptions.TicketNotFoundException;
+import org.bitmonsters.helpdesk.customer.Customer;
 import org.springframework.stereotype.Service;
 
 
@@ -14,8 +15,16 @@ public class TicketService {
 
     private final FeedbackRepository feedbackRepository;
 
-    public Ticket addTicket(Ticket ticket) {
-        return ticketRepository.save(ticket);
+    public Ticket addTicket(TicketRequest ticket) {
+
+        return ticketRepository.save(
+                Ticket.builder()
+                        .title(ticket.title())
+                        .content(ticket.content())
+                        .customer(
+                                Customer.builder().id(ticket.customerId()).build())
+            .build());
+
     }
 
     public Iterable<Ticket> getAllTickets() {

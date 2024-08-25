@@ -16,9 +16,9 @@ public class TicketController {
 
     @PostMapping
     public Ticket addTicket(
-            @RequestBody Ticket ticket
+            @RequestBody TicketRequest ticketRequest
     ){
-        return service.addTicket(ticket);
+        return service.addTicket(ticketRequest);
     }
 
     @GetMapping
@@ -36,7 +36,7 @@ public class TicketController {
 
     @PostMapping("/{id}/note")
     public Note createNote(
-            @PathVariable Long ticketId,
+            @PathVariable(name = "id") Long ticketId,
             @RequestBody NoteRequest noteRequest
     ){
         return service.addNote(ticketId, noteRequest);
@@ -44,8 +44,8 @@ public class TicketController {
 
     @PutMapping("/{id}/note/{noteId}")
     public Note updateNote(
-            @PathVariable Long ticketId,
-            @PathVariable Long noteId,
+            @PathVariable(name = "id") Long ticketId,
+            @PathVariable(name = "noteId") Long noteId,
             @RequestBody NoteRequest noteRequest
     ){
         return service.updateNote(ticketId, noteId, noteRequest);
@@ -53,14 +53,14 @@ public class TicketController {
 
     @GetMapping("/{id}/note")
     public Iterable<Note> getNotes(
-            @PathVariable Long ticketId
+            @PathVariable(name = "id") Long ticketId
     ){
         return service.getAllNotes(ticketId);
     }
 
     @PostMapping("/{id}/feedback")
     public Feedback createFeedback(
-            @PathVariable Long ticketId,
+            @PathVariable(name = "id") Long ticketId,
             @RequestBody FeedbackRequest feedbackRequest
     ){
         return service.addFeedback(ticketId, feedbackRequest);
@@ -68,7 +68,7 @@ public class TicketController {
 
     @GetMapping("/{id}/feedback")
     public Feedback getFeedback(
-            @PathVariable Long ticketId
+            @PathVariable(name = "id") Long ticketId
     ){
         return service.getFeedback(ticketId);
     }

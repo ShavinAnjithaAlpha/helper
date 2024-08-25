@@ -1,6 +1,8 @@
 package org.bitmonsters.helpdesk.customer;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.bitmonsters.helpdesk.ticket.Ticket;
@@ -10,6 +12,8 @@ import org.springframework.data.annotation.LastModifiedDate;
 import java.util.Date;
 import java.util.List;
 
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Entity
