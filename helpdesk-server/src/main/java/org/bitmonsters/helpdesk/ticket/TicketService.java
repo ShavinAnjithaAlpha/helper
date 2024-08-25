@@ -1,10 +1,9 @@
 package org.bitmonsters.helpdesk.ticket;
 
 import lombok.RequiredArgsConstructor;
+import org.bitmonsters.helpdesk.Exceptions.NoteNotFoundException;
+import org.bitmonsters.helpdesk.Exceptions.TicketNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.bitmonsters.helpdesk.ticket.TicketRepository;
-import org.bitmonsters.helpdesk.ticket.NoteRepository;
 
 
 @Service
@@ -27,46 +26,46 @@ public class TicketService {
         return ticketRepository.findById(id).orElse(null);
     }
 
-    public String addNote(Long ticketId, NoteRequest noteRequest) {
+    public Note addNote(Long ticketId, NoteRequest noteRequest) {
         Ticket ticket = getTicket(ticketId);
         if (ticket == null) {
-            return "Ticket not found";
+            throw new TicketNotFoundException("Ticket not found");
         }
-        noteRepository.save(
+        return noteRepository.save(
                 Note.builder().content(noteRequest.content()).ticket(
                         Ticket.builder().id(ticketId).build()
                 ).build());
-        return "Note added";
+
     }
 
-    public String updateNote(Long ticketId, Long noteId, NoteRequest noteRequest) {
+    public Note updateNote(Long ticketId, Long noteId, NoteRequest noteRequest) {
         Ticket ticket = getTicket(ticketId);
         if (ticket == null) {
-            return "Ticket not found";
+
+            throw new TicketNotFoundException("Ticket not found");
         }
         Note note = noteRepository.findById(noteId).orElse(null);
         if (note == null) {
-            return "Note not found";
+            throw new NoteNotFoundException("Note not found");
         }
         note.setContent(noteRequest.content());
-        noteRepository.save(note);
-        return "Note updated";
+        return noteRepository.save(note);
+
     }
 
     public Iterable<Note> getAllNotes(Long ticketId) {
         return noteRepository.findAllByTicketId(ticketId);
     }
 
-    public String addFeedback(Long ticketId, FeedbackRequest feedbackRequest){
+    public Feedback addFeedback(Long ticketId, FeedbackRequest feedbackRequest){
         Ticket ticket = getTicket(ticketId);
         if (ticket == null) {
-            return "Ticket not found";
+            throw new TicketNotFoundException("Ticket not found");
         }
-        feedbackRepository.save(
+        return feedbackRepository.save(
                 Feedback.builder().content(feedbackRequest.content()).ticket(
                         Ticket.builder().id(ticketId).build()
                 ).build());
-        return "Feedback added";
 
     }
 

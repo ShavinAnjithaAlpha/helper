@@ -35,7 +35,7 @@ public class TicketController {
     }
 
     @PostMapping("/{id}/note")
-    public String createNote(
+    public Note createNote(
             @PathVariable Long ticketId,
             @RequestBody NoteRequest noteRequest
     ){
@@ -43,7 +43,7 @@ public class TicketController {
     }
 
     @PutMapping("/{id}/note/{noteId}")
-    public String updateNote(
+    public Note updateNote(
             @PathVariable Long ticketId,
             @PathVariable Long noteId,
             @RequestBody NoteRequest noteRequest
@@ -59,7 +59,7 @@ public class TicketController {
     }
 
     @PostMapping("/{id}/feedback")
-    public String createFeedback(
+    public Feedback createFeedback(
             @PathVariable Long ticketId,
             @RequestBody FeedbackRequest feedbackRequest
     ){
