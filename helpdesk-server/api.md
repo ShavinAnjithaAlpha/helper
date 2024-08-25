@@ -7,11 +7,30 @@
    6. UPDATE /acc/{id} -- update the account
    7. DELETE /acc/{id} -- delete the account
    8. POST /ticket/{id}/note -- create a note
-   9. UPDATE /ticket/{id}/note/{id} -- upadte the note
+   9. UPDATE /ticket/{id}/note/{id} -- update the note
    10. GET /ticket/{id}note -- all notes related to one ticket
    11. POST /ticket/{id}/file -- post a file
    12. POST /ticket/{id}/feedback -- submit a feedback
    13. GET /ticket/{id}/feedback -- get the feedbacks
+
+2. /api/v1/staff:
+   POST /auth/login: login to the account
+
+   GET /ticket                     -- get all tickets
+   GET /ticket/{id}                -- get one ticket by id
+   POST /ticket/{id}/deadline      -- assign deadline
+   POST /ticket/{id}/status        -- set the new state
+   POST /ticket/{id}/note          -- add new note
+   POST /ticket/{id}/dispatch      -- start the dispatching process
+   GET /ticket/{id}/feedback       -- get the feedbacks
+
+
+    api/v1/tags/:
+        POST /            -- create a new tag
+        GET               -- get all the tags
+        GET /{id}         -- get one tag
+        GET /{id}/parent  -- get parent tag
+        GET /{id}/child   -- get the child tags
 
 - customer:
   id
