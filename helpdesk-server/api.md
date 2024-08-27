@@ -21,7 +21,7 @@
    POST /ticket/{id}/deadline      -- assign deadline
    POST /ticket/{id}/status        -- set the new state
    POST /ticket/{id}/note          -- add new note
-   POST /ticket/{id}/dispatch      -- start the dispatching process
+   -POST /ticket/{id}/dispatch      -- start the dispatching process
    GET /ticket/{id}/feedback       -- get the feedbacks
 
 
